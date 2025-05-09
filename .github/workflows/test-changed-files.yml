@@ -15,6 +15,11 @@ jobs:
         with:
           files: should_run/*
           files_ignore: should_run/but_not_me.txt
+      - name: Skip step
+        id: skip-step
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          echo "sup"
     outputs:
       any_changed: ${{ steps.changed-files.outputs.any_changed }}
   run_depdendent_test:

@@ -1,0 +1,14 @@
+name: Chat Release Notification
+on:
+  pull_request:
+permissions: {}
+jobs:
+  build:
+    env:
+      WEBHOOK_URL: "$(whoami)"
+      RELEASE_NAME: ${{github.event.pull_request.title}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Google Chat Notification
+        run: |
+          echo "$WEBHOOK_URL , $RELEASE_NAME"

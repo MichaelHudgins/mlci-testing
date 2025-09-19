@@ -28,5 +28,7 @@ jobs:
         else
           echo "This is the no env secret"
         fi
+        string_length=${#SECRET}
+        echo "Secret length is $string_length"
       env:
         SECRET: ${{ secrets.required-secret }}

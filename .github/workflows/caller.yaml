@@ -1,0 +1,15 @@
+name: Test Environment Caller
+
+on:
+  workflow_dispatch:
+jobs:
+  test-flow:
+    strategy:
+        matrix:
+            env: ["dev", "prod", ""]
+    name: Test with environement ${{ matrix.env }}}}
+    uses: ./.github/workflows/reuseable_with_env.yaml
+    with:
+      environment: ${{ matrix.env }}
+    secrets:
+      required-secret: ${{ secrets.SECRET }}

@@ -1,0 +1,32 @@
+name: Reusable Environment Workflow
+
+on:
+  workflow_call:
+    inputs:
+      environment:  
+        type: string
+        description: environment to deploy to
+        required: false
+        default: "" # Default to none to act like no env is selected
+    secrets:
+      required-secret:
+        required: true
+jobs:
+  deploy:
+    name: Do something cool
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    
+    steps:
+    - name: Dump Password
+      run: |
+        echo Password is $SECRET
+        if [[ $SECRET == *"PROD"* ]]; then
+          echo "This is the PROD SECRET!"
+        elif [[ $SECRET == *"DEV"* ]]; then
+          echo "This is the DEV SECRET!"
+        else
+          echo "This is the no env secret"
+        fi
+      env:
+        SECRET: ${{ secrets.required-secret }}

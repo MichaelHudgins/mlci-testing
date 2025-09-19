@@ -32,3 +32,18 @@ jobs:
         echo "Secret length is $string_length"
       env:
         SECRET: ${{ secrets.required-secret }}
+    - name: Step with no env
+      run: |
+        echo "Step with no env"
+    - name: Dump the password again
+      run: |
+          echo Password is $SECRET
+          if [[ $SECRET == *"PROD"* ]]; then
+            echo "This is the PROD SECRET!"
+          elif [[ $SECRET == *"DEV"* ]]; then
+            echo "This is the DEV SECRET!"
+          else
+            echo "This is the no env secret"
+          fi
+          string_length=${#SECRET}
+          echo "Secret length is $string_length"

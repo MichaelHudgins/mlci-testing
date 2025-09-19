@@ -7,7 +7,7 @@ jobs:
     strategy:
         matrix:
             env: ["dev", "prod", ""]
-    name: Test with environement ${{ matrix.env }}}}
+    name: Test with environement ${{ matrix.env }}
     uses: ./.github/workflows/reuseable_with_env.yaml
     with:
       environment: ${{ matrix.env }}

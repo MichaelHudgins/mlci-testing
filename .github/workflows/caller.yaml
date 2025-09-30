@@ -2,6 +2,7 @@ name: Test Environment Caller
 
 on:
   workflow_dispatch:
+  workflow_call:
 jobs:
   test-environment:
     strategy:

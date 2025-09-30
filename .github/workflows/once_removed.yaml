@@ -6,3 +6,5 @@ jobs:
   test:
     name: Top one level removed
     uses: ./.github/workflows/caller.yaml
+    with:
+      secrets: inherit
